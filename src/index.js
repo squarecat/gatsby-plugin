@@ -41,13 +41,16 @@ export function debug(msg) {
 export default trackEvent
 
 function isEnabled(script) {
-  return script.getAttribute('data-enabled')
+  return script && script.getAttribute('data-enabled')
 }
 
 function isLoaded(script) {
-  return script.getAttribute('data-loaded')
+  return script && script.getAttribute('data-loaded')
 }
 
 function getGlobal(script) {
-  return script.getAttribute('data-sa-global') || 'sa'
+  if (script) {
+    return script.getAttribute('data-sa-global')
+  }
+  return 'sa'
 }
