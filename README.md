@@ -1,8 +1,14 @@
 # Simple Analytics Gatsby Plugin
 
-Privacy friendly analytics without cookies and needed consent.
+[Simple Analytics](https://simpleanalytics.com) is a clean, simple, and privacy friendly analytics tool. Actionable data in a beautiful dashboard. It does [not use cookies](https://docs.simpleanalytics.com/what-we-collect) and you can [bypass ad blockers](https://docs.simpleanalytics.com/bypass-ad-blockers). Make sure [to signup](https://simpleanalytics.com) to get most value out of this plugin.
 
-Install with `npm install gatsby-plugin-simple-analytics`.
+## Install
+
+Run the following command:
+
+```bash
+npm install gatsby-plugin-simple-analytics --save-dev
+```
 
 ## What does it do
 
@@ -12,27 +18,34 @@ It tracks page views with support for `pushState` navigation. It sends the data 
 
 1. Add our plugin to `gatsby-config.js`
 
-    ```js
-    plugins: [
-      'gatsby-plugin-simple-analytics'
-    ]
-    ```
+   ```js
+   plugins: [    
+     {
+       resolve: 'simple-analytics-gatsby-plugin',
+       options: {
+         trackPageViews: true
+       }
+     }
+   ]
+   ```
 
 1. If you want to set a custom domain, use this config:
 
-    ```js
-    plugins: [
+   ```js
+    plugins: [    
       {
-        resolve: 'gatsby-plugin-simple-analytics',
+        resolve: 'simple-analytics-gatsby-plugin',
         options: {
-          // Optional custom domain
-          domain: 'your.custom.domain'
+          eventsGlobal: 'sa',
+          events: true,
+          trackPageViews: true,
+          ignorePages: ['pathname']
         }
       }
     ]
-    ```
+   ```
 
-    [Read our docs](https://docs.simpleanalytics.com/bypass-ad-blockers) on the custom domain feature.
+   [Read our docs](https://docs.simpleanalytics.com/bypass-ad-blockers) on the custom domain feature.
 
 ## Use with Metomic
 
@@ -54,7 +67,7 @@ plugins: [
 It will result in something like this:
 
 ```html
-<script src="https://cdn.simpleanalytics.io/hello.js" async="" defer="" type="text/x-metomic" data-micropolicy="POLICY-SLUG">
+<script src="https://scripts.simpleanalyticscdn.com/latest.js" async="" defer="" type="text/x-metomic" data-micropolicy="POLICY-SLUG">
 ```
 
 ## Contribute
